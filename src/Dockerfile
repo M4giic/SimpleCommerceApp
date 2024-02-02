@@ -8,7 +8,7 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
+WORKDIR /app
 
 COPY ["ZajeciaREST/ZajeciaREST.csproj", "ZajeciaREST/"]
 COPY ["ZajeciaREST.Domain/ZajeciaREST.Domain.csproj", "ZajeciaREST.Domain/"]
@@ -18,7 +18,7 @@ COPY ["ZajeciaREST.WebApi/ZajeciaREST.WebApi.csproj", "ZajeciaREST.WebApi/"]
 
 RUN dotnet restore "./ZajeciaREST/ZajeciaREST.csproj"
 COPY . .
-WORKDIR "/src/ZajeciaREST"
+WORKDIR "/app/ZajeciaREST"
 RUN dotnet build "ZajeciaREST.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
