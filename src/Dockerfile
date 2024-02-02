@@ -17,7 +17,7 @@ COPY ["ZajeciaREST.Infrastructure/ZajeciaREST.Infrastructure.csproj", "ZajeciaRE
 COPY ["ZajeciaREST.WebApi/ZajeciaREST.WebApi.csproj", "ZajeciaREST.WebApi/"]
 
 RUN dotnet restore "./ZajeciaREST/ZajeciaREST.csproj"
-COPY . .
+COPY ./ ./
 WORKDIR "/app/ZajeciaREST"
 RUN dotnet build "ZajeciaREST.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
