@@ -3,12 +3,12 @@
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
 USER app
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+EXPOSE 8080
+EXPOSE 8081
 
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
-WORKDIR /app
+WORKDIR /src
 
 COPY ["ZajeciaREST/ZajeciaREST.csproj", "ZajeciaREST/"]
 COPY ["ZajeciaREST.Domain/ZajeciaREST.Domain.csproj", "ZajeciaREST.Domain/"]
@@ -17,8 +17,8 @@ COPY ["ZajeciaREST.Infrastructure/ZajeciaREST.Infrastructure.csproj", "ZajeciaRE
 COPY ["ZajeciaREST.WebApi/ZajeciaREST.WebApi.csproj", "ZajeciaREST.WebApi/"]
 
 RUN dotnet restore "./ZajeciaREST/ZajeciaREST.csproj"
-COPY ./ ./
-WORKDIR "/app/ZajeciaREST"
+COPY . .
+WORKDIR "/src/ZajeciaREST"
 RUN dotnet build "ZajeciaREST.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish
