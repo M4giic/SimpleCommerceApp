@@ -22,16 +22,16 @@ jobs:
           dotnet-version: '8.x'
 
       - name: Build with dotnet
-        run: dotnet build src/ZajeciaREST/ZajeciaREST.csproj  -o myapp --configuration Release
+        run: dotnet build src/ZajeciaREST/ZajeciaREST.csproj --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o myapp
+        run: dotnet publish src/ZajeciaREST/ZajeciaREST.csproj -c Release -o myapp
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
+          path: myapp
 
   deploy:
     runs-on: windows-latest
