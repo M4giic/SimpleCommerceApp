@@ -18,7 +18,7 @@ public class ProductController : ControllerBase
     }
 
     [HttpPost]
-    [Authorize]
+    //[Authorize]
     public IActionResult AddProduct(AddProductRequest request)
     {
         var response = _productService.AddProduct(request);
@@ -61,7 +61,7 @@ public class ProductController : ControllerBase
 
 
     [HttpPut("{Id:int}")]
-    [Authorize]
+    //[Authorize]
     public IActionResult UpdateProductById(int Id, AddProductRequest request)
     {
         var response = _productService.UpdateProduct(Id, request);
@@ -76,7 +76,7 @@ public class ProductController : ControllerBase
 
 
     [HttpDelete("{Id:int}")]
-    [Authorize]
+    //[Authorize]
     public IActionResult DeleteProducyById(int Id)
     {
         try

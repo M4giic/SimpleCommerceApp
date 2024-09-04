@@ -31,6 +31,4 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, long>
             .ValueGeneratedOnAdd();
     }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder options)
-        => options.UseNpgsql("User ID=fl0user;Password=OTES35mItnFb;Host=ep-round-hall-a285y2fy.eu-central-1.aws.neon.fl0.io;Port=5432;Database=databaseHttp;Connection Lifetime=0;");
 }

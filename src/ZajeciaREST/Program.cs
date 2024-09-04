@@ -30,7 +30,7 @@ builder.Services.AddSingleton(mapper);
 
 var infrastructureSettings = builder.Configuration.GetSection("Infrastructure").Get<InfrastructureSettings>();
 
-builder.Services.AddAuthorization();
+//builder.Services.AddAuthorization();
 builder.Services.AddInfrastructure(infrastructureSettings);
 
 if (string.IsNullOrEmpty(infrastructureSettings.ConnectionString))
@@ -75,14 +75,10 @@ else
 }
 
 builder.Services.AddApplication();
-builder.Services.AddHttpsRedirection(options =>
-{
-    options.HttpsPort = 5001;
-  
-});
+
 
 var app = builder.Build();
-app.MapGroup("/account").MapIdentityApi<AppUser>();
+//app.MapGroup("/account").MapIdentityApi<AppUser>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -91,7 +87,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 
